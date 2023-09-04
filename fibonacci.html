@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: burlywood;
+        }
+        h1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: serif;
+            color: white;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            font-family: serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora fibonacci</h1><br>
+    <div class="container">
+    
+    <button id="start" style="display: block;">Iniciar cálculo</button>
+    <div id="fibonacci" style="display: none;">
+        <form action="">
+            <input type="number" id="meuInput"> <!--Input do número-->
+            <button type="button" onclick="calcularFibonacci()">Calcular fibonacci</button> <!--Botão que chama a função-->
+            
+            <p id="valorParcial"></p> 
+            <p id="valorFinal"></p> 
+        </form>
+    </div>
+    </div>
+    <script>
+    document.getElementById("start").addEventListener("click", function() { //adiciona um event listener para o botão quando é clicado
+        document.getElementById("fibonacci").style.display = "block" //define que, quando o botão é clicado, a div fatorial vira display block
+        document.getElementById("start").style.display = "none" // define que o botão de começar desapareça após ser clicado
+    })
+    function calcularFibonacci() {
+        var inputElement = document.getElementById("meuInput") //Pega o valor do input e atribui a uma variável
+        var intermediariosElement = document.getElementById("valorParcial") //Pega o "campo" que será exibido e atribui a uma variável
+        var resultadoElement = document.getElementById("valorFinal") //Pega o "campo" que será exibido e atribui a uma variável
+
+        var valor = parseInt(inputElement.value)
+        
+        var num1 = 1
+        var num2 = 0
+        var result = 0
+        var i
+        var intermediarios = [] 
+        for (i = 0; i < valor; i++)
+    {   
+        intermediarios.push("Elemento número " + i + ": " + result)
+        result = num1 + num2;
+        num1 = num2;
+        num2 = result;
+       
+    }
+    intermediariosElement.innerHTML = intermediarios.join("<br>")
+    resultadoElement.textContent = "O " + valor + "º elemento de fibonacci é: " + result 
+    }
+    </script>
+</body>
+</html>
